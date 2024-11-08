@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+<head>
+    <title> Cars Details </title>
+</head>
+
+<body>
+    <div class="container p-5 my-5 border">
+        <div class="container mt-3">
+            <center>
+                <h2>Cars Details </h2>
+            </center>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Cars_Name</th>
+                        <th>Cars_colour</th>
+                        <th>Cars_Price</th>
+                        <th>Cars_Models</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in response %}
+                    <tr>
+                        <td style="padding:10px;">{{i.cars_name}}</td>
+                        <td style="padding:10px;">{{i.cars_colour}}</td>
+                        <td style="padding:10px;">{{i.cars_price}}</td>
+                        <td style="padding:10px;">{{i.cars_models}}</td>
+
+                        <td>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" onclick="edit('{{i.id}}')">
+                                update
+                            </button>
+                        </td>
+
+                        <td>
+
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{i.id}}">
+                                delete
+                            </button>
+                        </td>
+                    </tr>
+                    {% include 'popup.html' %}
+
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</body>
+{% endblock %}
